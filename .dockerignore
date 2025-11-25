@@ -1,0 +1,42 @@
+# 忽略不必要的文件，减小Docker镜像大小
+
+# Git
+.git
+.gitignore
+README.md
+
+# 构建文件
+backend/target/
+frontend/dist/
+frontend/node_modules/
+
+# 日志文件
+logs/
+*.log
+
+# 配置文件（生产环境使用外部配置）
+*.yml
+*.properties
+
+# 临时文件
+*.tmp
+*.temp
+
+# IDE文件
+.vscode/
+.idea/
+*.iml
+*.iws
+
+# 测试文件
+**/test/
+**/*Test.java
+**/*Tests.java
+
+# 文档文件
+**/*.md
+**/*.txt
+
+# 其他
+.DS_Store
+Thumbs.db

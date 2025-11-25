@@ -1,0 +1,59 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# 告警规则配置
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# 加载规则文件
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# 抓取配置
+scrape_configs:
+  # Prometheus自身监控
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Spring Boot应用监控
+  - job_name: 'chatglm-backend'
+    metrics_path: '/api/actuator/prometheus'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+        # 标签配置
+        labels:
+          application: 'chatglm-backend'
+          environment: 'production'
+    # 指标重命名
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: '(.*)'
+        target_label: exported_job
+        replacement: 'chatglm-backend'
+
+  # Redis监控
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    metrics_path: '/metrics'
+
+  # RabbitMQ监控
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
+    metrics_path: '/metrics'
+
+# 远程写入配置（可选）
+remote_write:
+  - url: "http://remote-storage:9090/api/v1/write"
+
+# 远程读取配置（可选）
+remote_read:
+  - url: "http://remote-storage:9090/api/v1/read"

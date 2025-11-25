@@ -1,0 +1,169 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< com.chatglm.webapp:chatglm-backend >-----------------
+[INFO] Building chatglm-backend 1.0.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:3.2.1:run (default-cli) > test-compile @ chatglm-backend >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:resources (default-resources) @ chatglm-backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.11.0:compile (default-compile) @ chatglm-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:3.3.1:testResources (default-testResources) @ chatglm-backend ---
+[INFO] skip non existing resourceDirectory /Users/zengchengjie/Documents/chatglm-web-app/backend/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.11.0:testCompile (default-testCompile) @ chatglm-backend ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:3.2.1:run (default-cli) < test-compile @ chatglm-backend <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:3.2.1:run (default-cli) @ chatglm-backend ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.1)
+
+2025-10-26T14:43:40.883+08:00  INFO 47895 --- [chatglm-backend] [           main] c.chatglm.webapp.ChatGLMWebApplication   : Starting ChatGLMWebApplication using Java 17 with PID 47895 (/Users/zengchengjie/Documents/chatglm-web-app/backend/target/classes started by zengchengjie in /Users/zengchengjie/Documents/chatglm-web-app/backend)
+2025-10-26T14:43:40.884+08:00 DEBUG 47895 --- [chatglm-backend] [           main] c.chatglm.webapp.ChatGLMWebApplication   : Running with Spring Boot v3.2.1, Spring v6.1.2
+2025-10-26T14:43:40.884+08:00  INFO 47895 --- [chatglm-backend] [           main] c.chatglm.webapp.ChatGLMWebApplication   : No active profile set, falling back to 1 default profile: "default"
+2025-10-26T14:43:41.279+08:00  INFO 47895 --- [chatglm-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-10-26T14:43:41.280+08:00  INFO 47895 --- [chatglm-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-10-26T14:43:41.299+08:00  INFO 47895 --- [chatglm-backend] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2025-10-26T14:43:41.690+08:00  INFO 47895 --- [chatglm-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8000 (http)
+2025-10-26T14:43:41.695+08:00  INFO 47895 --- [chatglm-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-26T14:43:41.695+08:00  INFO 47895 --- [chatglm-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2025-10-26T14:43:41.723+08:00  INFO 47895 --- [chatglm-backend] [           main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-10-26T14:43:41.723+08:00  INFO 47895 --- [chatglm-backend] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 821 ms
+2025-10-26T14:43:41.833+08:00 DEBUG 47895 --- [chatglm-backend] [           main] c.c.w.config.JwtAuthenticationFilter     : Filter 'jwtAuthenticationFilter' configured for use
+2025-10-26T14:43:42.227+08:00  INFO 47895 --- [chatglm-backend] [           main] c.c.webapp.controller.AuthController     : Raw password: admin123
+2025-10-26T14:43:42.228+08:00  INFO 47895 --- [chatglm-backend] [           main] c.c.webapp.controller.AuthController     : Encoded password: $2a$10$cdZBZaSc.aquSWrhTptmWOLSdaXFfkZt.1Ujf28K329Bt3INuKXye
+2025-10-26T14:43:42.371+08:00  WARN 47895 --- [chatglm-backend] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 6552fda7-77af-49f9-b526-6350325245a1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-10-26T14:43:42.560+08:00  INFO 47895 --- [chatglm-backend] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 5 endpoint(s) beneath base path '/actuator'
+2025-10-26T14:43:42.610+08:00  INFO 47895 --- [chatglm-backend] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@50e6ee24, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7acb5200, org.springframework.security.web.context.SecurityContextHolderFilter@10ba9780, org.springframework.security.web.header.HeaderWriterFilter@2dacda9a, org.springframework.web.filter.CorsFilter@3d50a3d9, org.springframework.security.web.authentication.logout.LogoutFilter@a80a896, com.chatglm.webapp.config.JwtAuthenticationFilter@52aa7742, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1885dc2b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@328e50eb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3661b732, org.springframework.security.web.session.SessionManagementFilter@52f7fa65, org.springframework.security.web.access.ExceptionTranslationFilter@48333b12, org.springframework.security.web.access.intercept.AuthorizationFilter@14b96c1e]
+2025-10-26T14:43:42.945+08:00  INFO 47895 --- [chatglm-backend] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8000 (http) with context path '/api'
+2025-10-26T14:43:42.947+08:00  INFO 47895 --- [chatglm-backend] [           main] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2025-10-26T14:43:42.981+08:00  INFO 47895 --- [chatglm-backend] [           main] o.s.a.r.c.CachingConnectionFactory       : Created new connection: rabbitConnectionFactory#28b5d5dc:0/SimpleConnection@7e36d508 [delegate=amqp://admin@127.0.0.1:5672/, localPort=53562]
+2025-10-26T14:43:43.018+08:00  INFO 47895 --- [chatglm-backend] [           main] c.chatglm.webapp.ChatGLMWebApplication   : Started ChatGLMWebApplication in 2.319 seconds (process running for 2.451)
+2025-10-26T14:43:52.193+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-26T14:43:52.194+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-26T14:43:52.195+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-26T14:43:55.217+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:43:55.218+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:43:55.218+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:43:55.218+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Stored encoded password: $2a$10$cdZBZaSc.aquSWrhTptmWOLSdaXFfkZt.1Ujf28K329Bt3INuKXye
+2025-10-26T14:43:55.287+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Password match result: true
+2025-10-26T14:47:21.305+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:47:21.306+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:47:21.306+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:47:21.306+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Stored encoded password: $2a$10$cdZBZaSc.aquSWrhTptmWOLSdaXFfkZt.1Ujf28K329Bt3INuKXye
+2025-10-26T14:47:21.391+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Password match result: true
+2025-10-26T14:47:25.960+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:47:25.960+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:47:25.960+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:47:25.960+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:47:25.961+08:00  WARN 47895 --- [chatglm-backend] [io-8000-exec-10] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:47:25.961+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T14:47:32.364+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:47:32.365+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:47:32.365+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:47:32.365+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:47:32.365+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-2] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:47:32.365+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T14:47:45.484+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Login attempt for username: user
+2025-10-26T14:47:45.485+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : User found: user
+2025-10-26T14:47:45.487+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Raw password from request: user123
+2025-10-26T14:47:45.488+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Stored encoded password: $2a$10$MejOrqMI9uKrYUJLq7VKQOXQAmfpmxLTcNxCFG6gA3l1qBO/R160G
+2025-10-26T14:47:45.586+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-4] c.c.webapp.controller.AuthController     : Password match result: true
+2025-10-26T14:47:51.879+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-7] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:47:51.880+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-7] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:47:51.881+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-7] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:47:51.881+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-7] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:47:51.881+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-7] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:47:51.881+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-7] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T14:47:58.668+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Login attempt for username: user
+2025-10-26T14:47:58.669+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : User found: user
+2025-10-26T14:47:58.669+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Raw password from request: user123
+2025-10-26T14:47:58.671+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:47:58.671+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-9] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:47:58.671+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T14:49:01.223+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Login attempt for username: user
+2025-10-26T14:49:01.230+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : User found: user
+2025-10-26T14:49:01.231+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Raw password from request: user123
+2025-10-26T14:49:01.231+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:49:01.231+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-6] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:49:01.231+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-6] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T14:49:32.287+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:49:32.288+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:49:32.288+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:49:32.288+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:49:32.288+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-1] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:49:32.288+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T14:49:33.034+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T14:49:33.035+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T14:49:33.036+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T14:49:33.036+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T14:49:33.036+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-3] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T14:49:33.036+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T15:01:53.756+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T15:01:53.763+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T15:01:53.763+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T15:01:53.763+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T15:01:53.763+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-9] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T15:01:53.763+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-9] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T15:01:56.161+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T15:01:56.161+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T15:01:56.161+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T15:01:56.161+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T15:01:56.161+08:00  WARN 47895 --- [chatglm-backend] [io-8000-exec-10] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T15:01:56.161+08:00  INFO 47895 --- [chatglm-backend] [io-8000-exec-10] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T15:01:56.494+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T15:01:56.494+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T15:01:56.494+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T15:01:56.494+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T15:01:56.494+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-1] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T15:01:56.495+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-1] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T15:01:56.654+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T15:01:56.654+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T15:01:56.654+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T15:01:56.654+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T15:01:56.654+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-2] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T15:01:56.654+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-2] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T15:01:56.823+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Login attempt for username: admin
+2025-10-26T15:01:56.824+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : User found: admin
+2025-10-26T15:01:56.825+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Raw password from request: admin123
+2025-10-26T15:01:56.825+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Stored encoded password: null
+2025-10-26T15:01:56.825+08:00  WARN 47895 --- [chatglm-backend] [nio-8000-exec-3] o.s.s.c.bcrypt.BCryptPasswordEncoder     : Empty encoded password
+2025-10-26T15:01:56.825+08:00  INFO 47895 --- [chatglm-backend] [nio-8000-exec-3] c.c.webapp.controller.AuthController     : Password match result: false
+2025-10-26T15:02:15.030+08:00  INFO 47895 --- [chatglm-backend] [ntContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Restarting Consumer@578c99ac: tags=[[amq.ctag-s5eAiVixx3GZevOKSXU9jg]], channel=Cached Rabbit Channel: AMQChannel(amqp://admin@127.0.0.1:5672/,1), conn: Proxy@2689b752 Shared Rabbit Connection: SimpleConnection@7e36d508 [delegate=amqp://admin@127.0.0.1:5672/, localPort=53562], acknowledgeMode=AUTO local queue size=0
+2025-10-26T15:02:15.040+08:00  INFO 47895 --- [chatglm-backend] [ntContainer#0-2] o.s.a.r.c.CachingConnectionFactory       : Attempting to connect to: [localhost:5672]
+2025-10-26T15:02:15.066+08:00  INFO 47895 --- [chatglm-backend] [xecutorLoop-1-2] i.l.core.protocol.ConnectionWatchdog     : Reconnecting, last destination was localhost/127.0.0.1:6379
+2025-10-26T15:02:20.053+08:00  WARN 47895 --- [chatglm-backend] [ 127.0.0.1:5672] c.r.c.impl.ForgivingExceptionHandler     : An unexpected connection driver error occurred (Exception message: Socket closed)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  18:42 min
+[INFO] Finished at: 2025-10-26T15:02:22+08:00
+[INFO] ------------------------------------------------------------------------
+[WARNING] The requested profile "nexus-public" could not be activated because it does not exist.
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.2.1:run (default-cli) on project chatglm-backend: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
