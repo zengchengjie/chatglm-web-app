@@ -8,8 +8,6 @@ spring:
     name: chatglm-backend
   main:
     web-application-type: servlet
-  profiles:
-    active: dev
 
   # RabbitMQ配置
   rabbitmq:
