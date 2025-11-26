@@ -161,10 +161,10 @@ deploy_test() {
     log_info "部署测试环境..."
     
     # 停止现有服务
-    docker-compose down
+    docker-compose -f docker-compose.test.yml down
     
     # 构建并启动服务
-    docker-compose up -d --build
+    docker-compose -f docker-compose.test.yml up -d --build
     
     # 等待服务启动
     sleep 30
@@ -215,7 +215,15 @@ deploy_prod() {
 start_monitor() {
     log_info "启动监控服务..."
     
-    docker-compose up -d prometheus grafana
+    local compose_file="docker-compose.yml"
+    
+    if [ "$1" = "test" ]; then
+        compose_file="docker-compose.test.yml"
+    elif [ "$1" = "prod" ]; then
+        compose_file="docker-compose.prod.yml"
+    fi
+    
+    docker-compose -f $compose_file up -d prometheus grafana
     
     log_success "监控服务启动成功"
     echo "Prometheus: http://localhost:9090"
@@ -307,7 +315,7 @@ main() {
     
     # 启动监控
     if [ "$monitor" = true ] && [ "$environment" != "dev" ]; then
-        start_monitor
+        start_monitor $environment
     fi
     
     log_success "部署完成!"
