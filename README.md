@@ -253,6 +253,94 @@ data: [DONE]
 
 ## 部署说明
 
+### 生产环境部署
+
+本项目提供了完整的生产环境部署方案，包括自动化部署脚本和配置文件。
+
+#### 1. 使用部署脚本
+
+项目根目录提供了 `deploy.sh` 脚本，支持多环境部署：
+
+```bash
+# 生产环境完整部署
+sh deploy.sh prod -a
+
+# 仅构建生产环境
+sh deploy.sh prod -b
+
+# 仅部署生产环境
+sh deploy.sh prod -d
+```
+
+#### 2. 环境变量配置
+
+生产环境需要配置以下环境变量（参考 `.env.prod` 文件）：
+
+```bash
+# 域名配置
+DOMAIN=your-domain.com
+
+# ChatGLM API配置
+CHATGLM_API_KEY=your-chatglm-api-key
+
+# Redis配置
+REDIS_PASSWORD=your-redis-password
+
+# RabbitMQ配置
+RABBITMQ_USER=admin
+RABBITMQ_PASSWORD=your-rabbitmq-password
+
+# Grafana配置
+GRAFANA_PASSWORD=your-grafana-password
+
+# JWT密钥（请使用强密钥）
+JWT_SECRET=your-jwt-secret-key
+```
+
+#### 3. SSL证书配置
+
+生产环境需要配置SSL证书，将证书文件放置在 `ssl` 目录中：
+
+- `cert.pem` - SSL证书文件
+- `key.pem` - SSL私钥文件
+
+获取SSL证书的方法：
+
+1. **使用Let's Encrypt免费证书**：
+   ```bash
+   sudo certbot certonly --standalone -d your-domain.com
+   sudo cp /etc/letsencrypt/live/your-domain.com/fullchain.pem ./ssl/cert.pem
+   sudo cp /etc/letsencrypt/live/your-domain.com/privkey.pem ./ssl/key.pem
+   ```
+
+2. **从证书颁发机构购买证书**
+
+3. **使用自签名证书（仅用于测试）**：
+   ```bash
+   openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+     -keyout ./ssl/key.pem \
+     -out ./ssl/cert.pem
+   ```
+
+#### 4. 生产环境配置文件
+
+项目包含以下生产环境专用配置文件：
+
+- `docker-compose.prod.yml` - 生产环境Docker Compose配置
+- `nginx.prod.conf` - 生产环境Nginx配置
+- `prometheus.prod.yml` - 生产环境Prometheus监控配置
+
+#### 5. 生产环境特性
+
+生产环境配置包含以下优化：
+
+- **安全性**：HTTPS、密码保护、安全头配置
+- **性能**：资源限制、缓存配置、负载均衡
+- **可靠性**：健康检查、自动重启、日志管理
+- **监控**：Prometheus指标收集、Grafana可视化
+
+### 生产环境构建
+
 ### 生产环境构建
 
 #### 前端构建
@@ -301,7 +389,48 @@ java -jar /path/to/backend/target/chatglm-webapp.jar
 
 ### Docker部署(推荐)
 
-本项目支持使用Docker进行容器化部署，可参考相关文档。
+本项目支持使用Docker进行容器化部署，提供了完整的生产环境配置。
+
+#### 生产环境Docker部署
+
+使用 `docker-compose.prod.yml` 进行生产环境部署：
+
+```bash
+# 加载环境变量
+source .env.prod
+
+# 启动所有服务
+docker-compose -f docker-compose.prod.yml up -d
+
+# 查看服务状态
+docker-compose -f docker-compose.prod.yml ps
+
+# 查看日志
+docker-compose -f docker-compose.prod.yml logs -f
+
+# 停止服务
+docker-compose -f docker-compose.prod.yml down
+```
+
+#### 生产环境服务组件
+
+生产环境Docker Compose包含以下服务：
+
+- `chatglm-backend` - 后端应用服务
+- `redis` - Redis缓存服务
+- `redis-exporter` - Redis监控指标导出器
+- `rabbitmq` - RabbitMQ消息队列
+- `nginx` - Nginx反向代理
+- `prometheus` - Prometheus监控
+- `grafana` - Grafana可视化
+
+#### 生产环境特性
+
+- **资源限制**：每个服务都有CPU和内存限制
+- **健康检查**：自动检测服务健康状态
+- **日志管理**：日志大小限制和轮转
+- **网络隔离**：使用自定义网络隔离服务
+- **数据持久化**：重要数据通过Docker卷持久化
 
 ## 项目亮点
 
@@ -319,9 +448,102 @@ java -jar /path/to/backend/target/chatglm-webapp.jar
 
 ## 监控与维护
 
+### 开发环境监控
+
 - 访问 `http://localhost:8080/api/actuator/health` 检查服务健康状态
 - 访问 `http://localhost:8080/api/actuator/prometheus` 获取Prometheus格式的监控指标
 - 查看 `logs/chatglm-backend.log` 文件获取详细日志
+
+### 生产环境监控
+
+- 访问 `https://your-domain.com/health` 检查服务健康状态
+- 访问 `https://your-domain.com/api/actuator/prometheus` 获取Prometheus格式的监控指标
+- 访问 `https://your-domain.com/grafana` 查看Grafana监控面板
+- 查看Docker容器日志：`docker-compose -f docker-compose.prod.yml logs -f [service-name]`
+
+## 生产环境故障排除
+
+### 常见问题及解决方案
+
+#### 1. 服务无法启动
+
+**问题**：Docker容器启动失败
+
+**解决方案**：
+```bash
+# 查看容器状态
+docker-compose -f docker-compose.prod.yml ps
+
+# 查看容器日志
+docker-compose -f docker-compose.prod.yml logs [service-name]
+
+# 检查环境变量配置
+source .env.prod
+echo $DOMAIN
+```
+
+#### 2. SSL证书问题
+
+**问题**：HTTPS无法访问或证书错误
+
+**解决方案**：
+```bash
+# 检查证书文件是否存在
+ls -la ssl/
+
+# 检查证书有效期
+openssl x509 -in ssl/cert.pem -text -noout | grep "Not After"
+
+# 检查Nginx配置
+docker-compose -f docker-compose.prod.yml exec nginx nginx -t
+```
+
+#### 3. API密钥问题
+
+**问题**：ChatGLM API调用失败
+
+**解决方案**：
+```bash
+# 检查环境变量
+docker-compose -f docker-compose.prod.yml exec chatglm-backend env | grep CHATGLM
+
+# 测试API连接
+docker-compose -f docker-compose.prod.yml exec chatglm-backend curl -X POST "https://open.bigmodel.cn/api/paas/v4/chat/completions" -H "Authorization: Bearer $CHATGLM_API_KEY" -H "Content-Type: application/json" -d '{"model": "chatglm_turbo", "messages": [{"role": "user", "content": "Hello"}]}'
+```
+
+#### 4. 性能问题
+
+**问题**：响应缓慢或超时
+
+**解决方案**：
+```bash
+# 检查资源使用情况
+docker stats
+
+# 检查服务日志
+docker-compose -f docker-compose.prod.yml logs chatglm-backend
+
+# 查看Prometheus指标
+curl http://localhost:9090/api/v1/query?query=rate(http_requests_total[5m])
+```
+
+#### 5. 数据库连接问题
+
+**问题**：Redis或RabbitMQ连接失败
+
+**解决方案**：
+```bash
+# 检查服务状态
+docker-compose -f docker-compose.prod.yml ps redis rabbitmq
+
+# 测试连接
+docker-compose -f docker-compose.prod.yml exec redis redis-cli ping
+docker-compose -f docker-compose.prod.yml exec rabbitmq rabbitmqctl status
+
+# 检查网络连接
+docker-compose -f docker-compose.prod.yml exec chatglm-backend ping redis
+docker-compose -f docker-compose.prod.yml exec chatglm-backend ping rabbitmq
+```
 
 ## 注意事项
 
