@@ -306,6 +306,11 @@ sh deploy.sh test -b
 sh deploy.sh test -d
 ```
 
+测试环境访问地址：
+- 前端应用：http://localhost:8081
+- API接口：http://localhost:8081/api
+- 监控面板：http://localhost:3000
+
 ### 生产环境部署
 
 本项目提供了完整的生产环境部署方案，包括自动化部署脚本和配置文件。

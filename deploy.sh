@@ -172,8 +172,8 @@ deploy_test() {
     # 健康检查
     if curl -f http://localhost:8080/api/chat/health &> /dev/null; then
         log_success "测试环境部署成功"
-        echo "访问地址: http://localhost"
-        echo "API文档: http://localhost/api/swagger-ui.html"
+        echo "访问地址: http://localhost:8081"
+        echo "API文档: http://localhost:8081/api/swagger-ui.html"
         echo "监控面板: http://localhost:3000"
     else
         log_error "测试环境健康检查失败"
