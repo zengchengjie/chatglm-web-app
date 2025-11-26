@@ -12,8 +12,6 @@ services:
       - "8000:8000"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - REDIS_HOST=redis
-      - RABBITMQ_HOST=rabbitmq
       - CHATGLM_API_KEY=${CHATGLM_API_KEY}
     depends_on:
       - redis

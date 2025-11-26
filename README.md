@@ -84,6 +84,13 @@
 
 ### 后端配置
 
+本项目支持多环境配置，每个环境有独立的配置文件：
+
+- `application.yml` - 默认配置
+- `application-dev.yml` - 开发环境配置
+- `application-test.yml` - 测试环境配置
+- `application-prod.yml` - 生产环境配置
+
 1. 首先需要配置ChatGLM API访问信息：
    - 打开 `backend/src/main/resources/application.yml` 文件
    - 配置API基本URL和API密钥
