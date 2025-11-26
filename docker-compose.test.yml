@@ -9,7 +9,7 @@ services:
       args:
         DOCKER_BUILDKIT: 0
     ports:
-      - "8080:8080"
+      - "8000:8000"
     environment:
       - SPRING_PROFILES_ACTIVE=test
     depends_on:
@@ -133,6 +133,8 @@ services:
       - ./frontend/dist:/usr/share/nginx/html:ro
     depends_on:
       - chatglm-backend
+      - redis
+      - rabbitmq
     networks:
       - chatglm-network
     restart: unless-stopped

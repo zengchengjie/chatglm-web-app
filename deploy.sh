@@ -169,8 +169,11 @@ deploy_test() {
     # 等待服务启动
     sleep 30
     
+    # 重新加载Nginx配置
+    docker-compose -f docker-compose.test.yml exec nginx nginx -s reload
+    
     # 健康检查
-    if curl -f http://localhost:8080/api/chat/health &> /dev/null; then
+    if curl -f http://localhost:8000/api/chat/health &> /dev/null; then
         log_success "测试环境部署成功"
         echo "访问地址: http://localhost:8081"
         echo "API文档: http://localhost:8081/api/swagger-ui.html"

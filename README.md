@@ -308,7 +308,7 @@ sh deploy.sh test -d
 
 测试环境访问地址：
 - 前端应用：http://localhost:8081
-- API接口：http://localhost:8081/api
+- API接口：http://localhost:8000/api
 - 监控面板：http://localhost:3000
 
 ### 生产环境部署
