@@ -56,7 +56,11 @@ api.interceptors.response.use(
           window.location.href = '/login'
           break
         case 403:
-          message = '拒绝访问'
+          message = '登录已过期，请重新登录'
+          // 清除本地token
+          localStorage.removeItem('chatglm_token')
+          // 重定向到登录页
+          window.location.href = '/login'
           break
         case 404:
           message = '请求的资源不存在'
@@ -132,6 +136,14 @@ export const chatAPI = {
       })
       .then(response => {
         if (!response.ok) {
+          // 处理401和403错误（未授权和令牌过期）
+          if (response.status === 401 || response.status === 403) {
+            // 清除本地token
+            localStorage.removeItem('chatglm_token')
+            // 重定向到登录页
+            window.location.href = '/login'
+            throw new Error('登录已过期，请重新登录')
+          }
           throw new Error(`HTTP error! status: ${response.status}`)
         }
         
