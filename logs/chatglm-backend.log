@@ -5932,3 +5932,4 @@ This generated password is for development use only. Your security configuration
 2025-12-16T15:21:23.352+08:00  INFO 50190 --- [chatglm-backend] [ForkJoinPool.commonPool-worker-1] c.c.webapp.service.impl.ChatServiceImpl  : SSE connection completed successfully
 2025-12-16T15:21:23.366+08:00  INFO 50190 --- [chatglm-backend] [http-nio-8000-exec-3] c.c.webapp.controller.ChatController     : SSE connection completed
 2025-12-16T15:21:23.499+08:00  INFO 50190 --- [chatglm-backend] [ForkJoinPool.commonPool-worker-1] c.chatglm.webapp.client.QwenClientImpl   : Stream chat completed
+2025-12-16T15:45:54.789+08:00  INFO 50190 --- [chatglm-backend] [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#0-2] o.s.a.r.l.SimpleMessageListenerContainer : Waiting for workers to finish.
