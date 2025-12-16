@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: chatglm-backend
+    name: ai-assistant-backend
   main:
     web-application-type: servlet
   profiles:
@@ -66,7 +66,7 @@ qwen:
   monitoring:
     enabled: true
     metrics:
-      prefix: chatglm
+      prefix: ai-assistant
     tracing:
       enabled: false
     logging:
@@ -78,11 +78,11 @@ logging:
     root: INFO
     com.chatglm.webapp: DEBUG
   file:
-    name: logs/chatglm-backend.log
+    name: logs/ai-assistant-backend.log
 
 # JWT配置
 jwt:
-  secret: chatglm-secret-key-2024-enterprise-edition
+  secret: ai-assistant-secret-key-2024-enterprise-edition
   expiration: 86400
 
 # Actuator监控配置

@@ -1,7 +1,7 @@
 <template>
   <div class="chat-container">
     <div class="chat-header">
-      <h1>ChatGLM AI助手</h1>
+      <h1>智能AI助手</h1>
       <div class="user-info" v-if="currentUser">
         <span>欢迎, {{ currentUser.username }} ({{ currentUser.role }})</span>
         <el-button type="primary" link @click="handleLogout">退出</el-button>
@@ -15,7 +15,7 @@
         <div v-if="!chatStore.hasMessages" class="message-item assistant">
           <div class="message-role">AI助手</div>
           <div class="message-content">
-            您好！我是ChatGLM AI助手，请问有什么可以帮助您的？
+            您好！我是智能AI助手，请问有什么可以帮助您的？
           </div>
         </div>
         

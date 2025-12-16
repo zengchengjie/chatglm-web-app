@@ -97,6 +97,6 @@ public class ChatController {
      */
     @GetMapping("/health")
     public ApiResponse<String> health() {
-        return ApiResponse.success("ChatGLM backend service is healthy");
+        return ApiResponse.success("AI助手后端服务运行正常");
     }
 }

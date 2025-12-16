@@ -1,8 +1,8 @@
-# ChatGLM AI助手 - 前后端分离智能聊天应用
+# 智能AI助手 - 前后端分离智能聊天应用
 
 ## 项目概述
 
-这是一个专为AI大模型方向Java开发岗位面试设计的前后端分离应用，集成了ChatGLM大语言模型API，展示了现代Java后端与前端技术栈的结合能力。项目提供智能聊天功能，支持普通回复和流式回复两种模式，包含完整的异常处理、状态管理和用户体验优化。
+这是一个专为AI大模型方向Java开发岗位面试设计的前后端分离应用，集成了多种大语言模型API，展示了现代Java后端与前端技术栈的结合能力。项目提供智能聊天功能，支持普通回复和流式回复两种模式，包含完整的异常处理、状态管理和用户体验优化。
 
 ## 项目设计思路
 
@@ -65,6 +65,7 @@
 ## 功能特性
 
 - ✅ 智能聊天问答
+- ✅ 支持多种大语言模型（通义千问等）
 - ✅ 支持流式回复，实现打字机效果
 - ✅ 聊天历史记录管理
 - ✅ 响应式界面设计，适配移动端
@@ -91,15 +92,16 @@
 - `application-test.yml` - 测试环境配置
 - `application-prod.yml` - 生产环境配置
 
-1. 首先需要配置ChatGLM API访问信息：
+1. 首先需要配置AI模型API访问信息：
    - 打开 `backend/src/main/resources/application.yml` 文件
    - 配置API基本URL和API密钥
 
 ```yaml
-chatglm:
+qwen:
   api:
-    base-url: "https://api.chatglm.cn/v1/chat/completions"
+    base-url: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"
     api-key: "your_api_key_here"
+    model-name: "qwen-turbo"
     timeout: 30000
 ```
 
@@ -199,7 +201,7 @@ chatglm-web-app/
 ### 1. 聊天接口
 - **URL**: `/api/chat/completions`
 - **Method**: `POST`
-- **Description**: 发送消息到ChatGLM模型并获取完整回复
+- **Description**: 发送消息到AI模型并获取完整回复
 - **请求体**:
 ```json
 {
@@ -224,7 +226,7 @@ chatglm-web-app/
 ### 2. 流式聊天接口
 - **URL**: `/api/chat/stream`
 - **Method**: `POST`
-- **Description**: 发送消息到ChatGLM模型并获取流式回复（逐字显示）
+- **Description**: 发送消息到AI模型并获取流式回复（逐字显示）
 - **请求体**:
 ```json
 {
@@ -253,7 +255,7 @@ data: [DONE]
 {
   "code": 200,
   "message": "success",
-  "data": "ChatGLM backend service is healthy",
+  "data": "AI助手后端服务运行正常",
   "extra": null
 }
 ```
@@ -496,7 +498,9 @@ docker-compose -f docker-compose.prod.yml down
 
 2. **优雅的异常处理**：全局异常处理器确保所有异常都能返回标准化的错误响应
 
-3. **高性能流式响应**：基于SSE实现的流式聊天，提供类ChatGPT的实时打字效果
+3. **高性能流式响应**：基于SSE实现的流式聊天，提供实时打字效果，提升用户体验
+
+4. **多模型支持**：支持多种大语言模型API，包括通义千问等，可根据需求灵活切换
 
 4. **现代化前端技术栈**：使用Vue 3 Composition API、Pinia状态管理，代码结构清晰
 
