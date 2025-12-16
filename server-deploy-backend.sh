@@ -9,7 +9,7 @@ set -e  # 遇到错误立即退出
 PROJECT_DIR="/root/chatglm-web-app"   # 项目目录
 BACKEND_DIR="$PROJECT_DIR/backend"   # 后端代码目录
 SERVICE_NAME="chatglm-web-app-chatglm-backend"  # Docker服务名称
-JAR_FILE="chatglm-backend.jar"       # 打包后的jar文件名
+JAR_FILE="chatglm-backend-1.0.0.jar"       # 打包后的jar文件名
 DOCKER_COMPOSE_FILE="$PROJECT_DIR/docker-compose.yml"  # Docker Compose文件
 
 echo "======================================"
