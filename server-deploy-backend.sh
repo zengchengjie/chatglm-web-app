@@ -36,9 +36,13 @@ fi
 
 echo "编译成功完成!"
 
-# 2. 复制jar文件到项目根目录
-echo "步骤 2: 复制jar文件..."
-cp "$BACKEND_DIR/target/$JAR_FILE" "$JAR_PATH"
+# 2. 检查jar文件是否存在
+echo "步骤 2: 检查jar文件..."
+if [ ! -f "$BACKEND_DIR/target/$JAR_FILE" ]; then
+    echo "错误: 找不到编译后的JAR文件: $BACKEND_DIR/target/$JAR_FILE"
+    exit 1
+fi
+echo "JAR文件检查通过!"
 
 # 3. 检查Docker和Docker Compose
 echo "步骤 3: 检查Docker环境..."
