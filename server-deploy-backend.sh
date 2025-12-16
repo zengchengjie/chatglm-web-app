@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # ChatGLM Web App 后端部署脚本（服务器端执行）
-# 用于在服务器上编译并更新后端服务
+# 用于在服务器上编译并更新Docker环境下的后端服务
 
 set -e  # 遇到错误立即退出
 
 # 配置变量
 PROJECT_DIR="/root/chatglm-web-app"   # 项目目录
 BACKEND_DIR="$PROJECT_DIR/backend"   # 后端代码目录
-SERVICE_NAME="chatglm-backend-1.0.0"       # 服务名称
-JAR_FILE="$SERVICE_NAME.jar"          # 打包后的jar文件名
-JAR_PATH="$PROJECT_DIR/$JAR_FILE"     # jar文件路径
+SERVICE_NAME="chatglm-web-app-chatglm-backend"  # Docker服务名称
+JAR_FILE="chatglm-backend.jar"       # 打包后的jar文件名
+DOCKER_COMPOSE_FILE="$PROJECT_DIR/docker-compose.yml"  # Docker Compose文件
 
 echo "======================================"
 echo "开始部署 ChatGLM Web App 后端服务"
@@ -40,47 +40,39 @@ echo "编译成功完成!"
 echo "步骤 2: 复制jar文件..."
 cp "$BACKEND_DIR/target/$JAR_FILE" "$JAR_PATH"
 
-# 3. 创建systemd服务文件（如果不存在）
-echo "步骤 3: 检查并配置systemd服务..."
-if [ ! -f /etc/systemd/system/$SERVICE_NAME.service ]; then
-    echo "创建systemd服务文件..."
-    cat > /etc/systemd/system/$SERVICE_NAME.service << EOF
-[Unit]
-Description=ChatGLM Backend Service
-After=network.target
-
-[Service]
-Type=simple
-User=root
-WorkingDirectory=$PROJECT_DIR
-ExecStart=/usr/bin/java -jar $JAR_PATH
-Restart=always
-RestartSec=10
-StandardOutput=journal
-StandardError=journal
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-    # 重新加载systemd并启用服务
-    systemctl daemon-reload
-    systemctl enable $SERVICE_NAME
-    echo "systemd服务文件已创建并启用"
-else
-    echo "systemd服务文件已存在，跳过创建"
+# 3. 检查Docker和Docker Compose
+echo "步骤 3: 检查Docker环境..."
+if ! command -v docker &> /dev/null; then
+    echo "错误: 未找到Docker，请先安装Docker"
+    exit 1
 fi
 
-# 4. 重启服务
-echo "步骤 4: 重启服务..."
-systemctl restart $SERVICE_NAME
+if ! command -v docker-compose &> /dev/null; then
+    echo "错误: 未找到Docker Compose，请先安装Docker Compose"
+    exit 1
+fi
+
+# 4. 停止并重启Docker服务
+echo "步骤 4: 重启Docker服务..."
+cd "$PROJECT_DIR"
+
+# 停止服务
+docker-compose stop $SERVICE_NAME
+
+# 重新构建并启动服务
+docker-compose up -d --build $SERVICE_NAME
 
 # 5. 检查服务状态
 echo "步骤 5: 检查服务状态..."
-systemctl status $SERVICE_NAME --no-pager
+docker-compose ps $SERVICE_NAME
+
+# 6. 查看服务日志（最近10行）
+echo ""
+echo "最近的服务日志:"
+docker-compose logs --tail=10 $SERVICE_NAME
 
 echo ""
 echo "======================================"
 echo "部署完成! 后端服务已更新并重启"
-echo "服务日志查看命令: journalctl -u $SERVICE_NAME -f"
+echo "查看完整日志命令: docker-compose logs -f $SERVICE_NAME"
 echo "======================================"

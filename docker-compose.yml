@@ -1,30 +1,33 @@
 version: '3.8'
 
 services:
-  # 后端应用服务(改为本地启动)
-#  chatglm-backend:
-#    build:
-#      context: ./backend
-#      dockerfile: Dockerfile
-#      args:
-#        DOCKER_BUILDKIT: 0
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#      - REDIS_HOST=redis
-#      - RABBITMQ_HOST=rabbitmq
-#    depends_on:
-#      - redis
-#      - rabbitmq
-#    networks:
-#      - chatglm-network
-#    restart: unless-stopped
-#    healthcheck:
-#      test: ["CMD", "curl", "-f", "http://localhost:8080/api/chat/health"]
-#      interval: 30s
-#      timeout: 10s
-#      retries: 3
+  # 后端应用服务
+  chatglm-backend:
+    container_name: chatglm-web-app-chatglm-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        DOCKER_BUILDKIT: 0
+    ports:
+      - "8000:8000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=test
+      - REDIS_HOST=redis
+      - RABBITMQ_HOST=rabbitmq
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      - redis
+      - rabbitmq
+    networks:
+      - chatglm-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/chat/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 
   # Redis缓存服务
   redis:
