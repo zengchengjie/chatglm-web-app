@@ -11,7 +11,7 @@ spring:
 
   # RabbitMQ配置
   rabbitmq:
-    host: rabbitmq
+    host: 111.229.177.132
     port: 5672
     username: admin
     password: admin123
@@ -26,24 +26,24 @@ spring:
         max-interval: 10000
 
   # Redis配置
-  redis:
-    host: redis
-    port: 6379
-    password:
-    database: 0
-    lettuce:
-      pool:
-        max-active: 8
-        max-idle: 8
-        min-idle: 0
-        max-wait: -1ms
-      shutdown-timeout: 100ms
-
+  data:
+    redis:
+      host: 111.229.177.132
+      port: 6379
+      password:
+      database: 0
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
+        shutdown-timeout: 100ms
 # ChatGLM API配置
 chatglm:
   api:
     base-url: https://open.bigmodel.cn/api/paas/v4/chat/completions
-    api-key: 7dbe906c5aec46e1a79dd28e551b6163.eKQbqtTz7PvRFubR
+    api-key: 0eab6bcfd9b34ec8a3dc4de471731eb2.lpS49ox6p2M8x1tI
     model-name: chatglm_turbo
     timeout: 30000
     max-tokens: 2000
@@ -53,6 +53,25 @@ chatglm:
     enabled: true
     metrics:
       prefix: chatglm
+    tracing:
+      enabled: false
+    logging:
+      level: INFO
+
+# 通义千问API配置
+qwen:
+  api:
+    base-url: https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
+    api-key: sk-36690807ab8f4a3f84bd816996e645c5
+    model-name: qwen-turbo
+    timeout: 30000
+    max-tokens: 2000
+    temperature: 0.7
+    top-p: 0.95
+  monitoring:
+    enabled: true
+    metrics:
+      prefix: qwen
     tracing:
       enabled: false
     logging:
@@ -80,7 +99,7 @@ management:
   endpoint:
     health:
       show-details: always
-  metrics:
-    export:
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true

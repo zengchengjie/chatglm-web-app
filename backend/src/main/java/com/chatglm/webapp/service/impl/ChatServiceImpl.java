@@ -1,6 +1,6 @@
 package com.chatglm.webapp.service.impl;
 
-import com.chatglm.webapp.client.ChatGLMClient;
+import com.chatglm.webapp.client.QwenClientImpl;
 import com.chatglm.webapp.exception.ChatGLMException;
 import com.chatglm.webapp.model.ApiRequest;
 import com.chatglm.webapp.model.ChatGLMModel;
@@ -27,7 +27,7 @@ public class ChatServiceImpl implements ChatService {
     private static final Logger logger = LoggerFactory.getLogger(ChatServiceImpl.class);
     
     @Autowired
-    private ChatGLMClient chatGLMClient;
+    private QwenClientImpl qwenClient;
     
     @Autowired
     private ChatHistoryService chatHistoryService;
@@ -62,8 +62,8 @@ public class ChatServiceImpl implements ChatService {
             // 构建消息列表
             List<ChatGLMModel.Message> messages = buildMessages(request.getMessage(), request.getHistory());
             
-            // 调用ChatGLM API
-            ChatGLMModel.ChatResponse response = chatGLMClient.chat(messages);
+            // 调用通义千问API
+            ChatGLMModel.ChatResponse response = qwenClient.chat(messages);
             
             // 获取响应内容
             String reply = response.getFirstReply();
@@ -72,7 +72,7 @@ public class ChatServiceImpl implements ChatService {
             }
             
             // 保存聊天历史记录
-            saveChatHistory(request.getMessage(), reply, "chatglm_turbo");
+            saveChatHistory(request.getMessage(), reply, "qwen_turbo");
             
             return com.chatglm.webapp.model.ApiResponse.success(reply);
         } catch (Exception e) {
@@ -103,7 +103,7 @@ public class ChatServiceImpl implements ChatService {
         List<ChatGLMModel.Message> messages = buildMessages(request.getMessage(), request.getHistory());
         
         // 调用流式API
-        chatGLMClient.streamChat(messages, new ChatGLMClient.StreamResponseHandler() {
+        qwenClient.streamChat(messages, new QwenClientImpl.StreamResponseHandler() {
             @Override
             public void onMessage(String content) {
                 try {
@@ -132,7 +132,7 @@ public class ChatServiceImpl implements ChatService {
                     logger.info("SSE connection completed successfully");
                     
                     // 保存流式聊天的完整响应（这里简化处理，实际应该收集所有流式内容）
-                    saveChatHistory(request.getMessage(), "[流式响应]", "chatglm_turbo");
+                    saveChatHistory(request.getMessage(), "[流式响应]", "qwen_turbo");
                 } catch (IOException e) {
                     logger.error("Error sending complete message: {}", e.getMessage(), e);
                     try {

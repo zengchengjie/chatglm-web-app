@@ -1,5 +1,6 @@
 package com.chatglm.webapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 public class ChatHistory {
@@ -11,6 +12,7 @@ public class ChatHistory {
     private String model;
     private Integer tokensUsed;
     private Double cost;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
     
     public ChatHistory() {}
